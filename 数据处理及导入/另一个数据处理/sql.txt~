@@ -1,0 +1,69 @@
+----create table----
+create table stations (s_stationid      integer not null,
+                       s_stationname    char(20) primary key,
+                       s_city           char(20) not null
+                       );
+
+create table users   (u_username    char(20) not null,
+                      u_userid      char(20) primary key,
+                      u_phone       char(20) not null,
+                      u_card        char(20) not null,
+                      u_bank        char(20) not null
+                      );
+
+create table trains   (tr_trainid           char(20),
+                       tr_sequence          integer,
+                       tr_stationname       char(20) not null,
+                       tr_arrive            char(20),
+                       tr_departure         char(20),
+                       tr_stay              char(20),
+                       tr_traveltime        integer,
+                       tr_traveldistance    integer,
+                       tr_yzprice           decimal(15,2),
+                       tr_rzprice           decimal(15,2),
+                       tr_ywsprice          decimal(15,2),
+                       tr_ywzprice          decimal(15,2),
+                       tr_ywxprice          decimal(15,2),
+                       tr_rwsprice          decimal(15,2),
+                       tr_rwxprice          decimal(15,2),
+                       primary key(tr_trainid,tr_sequence),
+                       foreign key (tr_stationname) references stations(s_stationname)
+                       );
+
+create table tickets  (ti_date              date,
+                       ti_trainid           char(20),
+                       ti_sequence          integer,
+                       ti_yzticket          integer not null,
+                       ti_rzticket          integer not null,
+                       ti_ywsticket         integer not null,
+                       ti_ywzticket         integer not null,
+                       ti_ywxticket         integer not null,
+                       ti_rwsticket         integer not null,
+                       ti_rwxticket         integer not null,
+                       primary key(ti_date,ti_trainid,ti_sequence)
+                       );
+
+create table orders  (o_date               date,
+                      o_userid             char(20),
+                      o_trainid            char(20),
+                      o_startpoint         integer,
+                      o_endpoint           integer,
+                      o_orderid            integer not null,
+                      o_ticketprice        decimal(15,2) not null,
+                      primary key(o_date,o_userid,o_trainid,o_startpoint,o_endpoint),
+                      foreign key (o_userid) references users(u_userid)
+                      );
+
+
+----copy data----
+copy stations from '/home/dbms/Desktop/data2/all-stations.txt' with (format csv, delimiter '|');
+copy trains from '/home/dbms/Desktop/data2/trains.txt' with (format csv, delimiter '|');
+
+
+----drop all----
+drop table orders;
+drop table stations;
+drop table tickets;
+drop table trains;
+drop table users;
+

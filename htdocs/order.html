@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" mrc="text/html; charset=gb2312" />
+<meta charset='utf-8'/>
+<title>订单查询</title>
+<style type="text/css">
+<!--
+body {
+font-family: Arial, Helvetica, sans-serif;
+font-size:12px;
+color:#666666;
+background:#fff;
+text-align:center;
+}
+* {
+margin:0;
+padding:0;
+}
+
+a {
+color:#1E7ACE;
+text-decoration:none; 
+}
+a:hover {
+color:#000;
+text-decoration:underline;
+}
+h3 {
+font-size:14px;
+font-weight:bold;
+}
+
+pre,p {
+color:#1E7ACE;
+margin:4px;
+}
+input, select,textarea {
+padding:1px;
+margin:2px;
+font-size:11px;
+}
+.buttom{
+padding:1px 10px;
+font-size:12px;
+border:1px #1E7ACE solid;
+background:#D0F0FF;
+}
+#formwrapper {
+width:450px;
+margin:15px auto;
+padding:20px;
+text-align:left;
+border:1px solid #000000;
+}
+fieldset {
+padding:10px;
+margin-top:5px;
+border:1px solid #000000;
+background:#fff;
+}
+fieldset legend {
+color:#000000;
+font-weight:bold;
+padding:3px 20px 3px 20px;
+border:1px solid #000000; 
+background:#fff;
+}
+fieldset label {
+float:left;
+width:120px;
+text-align:right;
+padding:4px;
+margin:1px;
+}
+fieldset div {
+clear:left;
+margin-bottom:2px;
+}
+.enter{ text-align:center;}
+.clear {
+clear:both;
+}
+-->
+</style>
+</head>
+<body>
+<div id="formwrapper">
+<h3>订单号查询</h3>
+<form action="/cgi-bin/print_order.cgi" method="GET">
+<fieldset>
+    <legend>查询</legend>
+订单号:<br />
+<input type="text" name="orderid"><br />
+<br />
+<input type="submit" value="查询">
+</fieldset>
+</form>
+<br />
+<h3>出发日期查询</h3>
+<form action="/cgi-bin/search_order.cgi" method="POST">
+<fieldset>
+<legend>查询</legend>
+出发日期范围(yyyy-mm-dd):<br />
+<input type="text" name="datebegin">至<input type="text" name="dateend"><br />
+<br />
+<input type="submit" value="查询">
+</fieldset>
+</form>
+<br />
+</div>
+<a href="index.html">返回主页</a>
+
+</body>
+</html>
+
